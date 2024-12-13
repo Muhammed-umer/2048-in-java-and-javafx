@@ -75,10 +75,10 @@ public class project extends Application{
             scene.setOnKeyPressed(event->{
                 boolean moved=false;
                 switch(event.getCode()){
-                    case UP -> moved=moveUp();
-                    case DOWN -> moved=moveDown();
-                    case RIGHT -> moved=moveRight();
-                    case LEFT -> moved=moveLeft();
+                    case UP -> moved=mergeUp();
+                    case DOWN -> moved=mergeDown();
+                    case RIGHT -> moved=mergeRight();
+                    case LEFT -> moved=mergeLeft();
                 }
                 if(moved){ 
                    generate();  
@@ -137,7 +137,7 @@ public class project extends Application{
         };
     }
     /* Moving elemnts towards up */
-    void upCheck(){
+    void moveUP(){
         for(int i=0;i<4;i++){ 
             for(int j=0;j<4;j++){
                 if(board[j][i]!=0) continue;
@@ -151,7 +151,7 @@ public class project extends Application{
         }
     }
     /* Moving elemnts towards down */
-    void downCheck(){
+    void moveDOWN(){
         for(int i=0;i<4;i++){
             for(int j=3;j>=0;j--){
                 if(board[j][i]!=0) continue;
@@ -165,7 +165,7 @@ public class project extends Application{
         }
     }
     /* Moving elemnts towards right */
-    void rightCheck(){
+    void moveRIGHT(){
         for(int i=0;i<4;i++){
             for(int j=3;j>=0;j--){
                 if(board[i][j]!=0) continue;
@@ -179,7 +179,7 @@ public class project extends Application{
         }
     }
     /* Moving elemnts towards left */
-    void leftCheck(){
+    void moveLEFT(){
         for (int i=0;i<4;i++){
             for(int j=0;j<4;j++){
                if(board[i][j]!=0) continue;
@@ -193,9 +193,9 @@ public class project extends Application{
         }
     }
     /* Merging elements on UPclick */
-    boolean moveUp(){
+    boolean mergeUp(){
         boolean moved=false;
-        upCheck();
+        moveUP();
         for(int i=0;i<4;i++){
             for(int j=0;j<3;j++){
                 if(board[j][i]==board[j+1][i]){
@@ -205,13 +205,13 @@ public class project extends Application{
                 }
             }
         }
-        upCheck();
+        moveUP();
         return moved;
     }
     /* Merging elements on DOWNtclick */
-    boolean moveDown(){
+    boolean mergeDown(){
         boolean moved=false;
-        downCheck();
+        moveDOWN();
         for(int i=0;i<4;i++){
             for(int j=3;j>0;j--){
                 if(board[j][i]==board[j-1][i]){
@@ -221,13 +221,13 @@ public class project extends Application{
                 } 
             }
         }
-        downCheck();
+        moveDOWN();
         return moved;
     }
     /* Merging elements on Rightclick */
-    boolean moveRight(){
+    boolean mergeRight(){
         boolean moved=false;
-        rightCheck();
+        moveRIGHT();
         for(int i=0;i<4;i++){
             for(int j=3;j>0;j--){
                 if(board[i][j]==board[i][j-1]){
@@ -237,13 +237,13 @@ public class project extends Application{
                 }
             }
         }
-        rightCheck();
+        moveRIGHT();
         return moved;
     }
     /* Merging elements on LEFTclick */
-    boolean moveLeft(){    
+    boolean mergeLeft(){    
         boolean moved=false;
-        leftCheck();
+        moveLEFT();
         for(int i=0;i<4;i++)
             {   
                 for(int j=0;j<3;j++){
@@ -254,7 +254,7 @@ public class project extends Application{
                     }
                 } 
             }
-        leftCheck();
+        moveLEFT();
         return moved;
     }
     public static void main(String []args){
